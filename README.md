@@ -1,1 +1,1 @@
-# ShopManagerApplication
+# ShopManagerApp
