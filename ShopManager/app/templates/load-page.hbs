@@ -1,0 +1,14 @@
+<div class="main-content">
+  {{#if this.showError}}
+    <div class="error-popup">
+      Formato non corretto del file CSV
+    </div>
+  {{/if}}
+  <div class="button-container">
+    <input type="file" id="fileInput" accept=".csv" style="display: none;" {{on "change" this.handleFileUpload}} />
+    <button class="main-button" type="button" {{on "click" this.triggerFileInput}}>Carica CSV</button>
+  </div>
+  <div class="image-container">
+    <img src="assets/logo-fruit.png" alt="Descrizione dell'immagine" />
+  </div>
+</div>

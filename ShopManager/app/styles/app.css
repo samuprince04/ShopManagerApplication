@@ -1,0 +1,550 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #dfdbdb;
+}
+
+/* Stili per l'header */
+.header {
+  background-color: #085394;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-start; /* Cambiato da center a flex-start */
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 70px;
+  margin-right: 10px;
+}
+
+.app-name {
+  color: white;
+  font-size: 24px;
+  font-family: Montserrat, sans-serif;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 40px 20px 20px;
+}
+
+.button-container {
+  margin-bottom: 20px;
+}
+
+.main-button {
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: #188754;
+  padding: 12px 30px;
+  font-size: 17px;
+  font-family: Montserrat, sans-serif;
+  text-decoration: none;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 40px;
+}
+
+@media (width >= 376px) {
+  .app-name {
+    margin-left: 20px;
+  }
+}
+
+@media (width >= 800px) {
+  .logo {
+    margin-left: 20px;
+  }
+}
+
+.error-popup {
+  color: white;
+  background-color: rgb(163, 0, 0);
+  padding: 10px;
+  border-radius: 7px;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 20px); /* Riduci la larghezza per evitare overflow */
+  max-width: 600px; /* Limita la larghezza massima del popup */
+  box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
+}
+
+/* Assicurati che la tabella occupi tutto lo spazio disponibile */
+.data-table-container {
+  margin-bottom: 54px;
+  padding: 1em;
+}
+
+.product-item {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 0.2em;
+  padding: 0.5em;
+  background-color: #f9f9f9;
+}
+.product-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em; /* Spazio interno del div */
+}
+
+.product-title {
+  font-weight: bold;
+  font-family: Montserrat, sans-serif;
+  flex: 1; /* Permette al titolo di espandersi per occupare spazio disponibile */
+  margin-right: 1em; /* Spazio tra il titolo e il pulsante Dettagli */
+}
+
+.expand-button {
+  background-color: #085394;
+  color: white;
+  border: none;
+  padding: 0.7em 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Montserrat, sans-serif;
+}
+
+.expand-button:hover {
+  background-color: #0056b3;
+}
+
+.edit-button,
+.delete-button {
+  color: white;
+  padding: 0.7em 1em;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5em; /* Spazio tra i pulsanti di modifica e cancellazione */
+}
+
+.edit-button {
+  background-color: #007011;
+}
+
+.delete-button {
+  background-color: #aa0000;
+}
+
+.product-details {
+  font-family: Montserrat, sans-serif;
+  margin-top: 1em;
+  border-top: 1px solid #ddd;
+  padding-top: 1em;
+}
+/* Stile per la barra di ricerca */
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+  position: relative;
+  flex-wrap: wrap; /* Permette agli elementi di andare su nuove righe se necessario */
+}
+
+.search-bar input {
+  flex: 1 1 60%; /* Occupa il 60% dello spazio disponibile, ma può ridursi se necessario */
+  min-width: 150px; /* Imposta una larghezza minima */
+  padding: 0.5em;
+  font-size: 0.9em; /* Riduce la dimensione del testo */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  height: 40px;
+}
+
+.search-button,
+.reset-button {
+  background-color: #085394;
+  color: white;
+  border: none;
+  padding: 0.5em 0.8em; /* Riduce il padding per adattarsi a schermi più piccoli */
+  font-size: 0.9em; /* Riduce la dimensione del font per schermi piccoli */
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 0.5em;
+  white-space: nowrap; /* Assicura che i pulsanti non vadano su nuove righe */
+  margin-bottom: 0.5em;
+  height: 40px;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.reset-button {
+  background-color: #dc3545;
+}
+
+.reset-button:hover {
+  background-color: #c82333;
+}
+
+/* Stile per la lista dei suggerimenti */
+/* Stile per la lista dei suggerimenti */
+.suggestions-list {
+  position: absolute;
+  top: calc(100% + 0.5em);
+  left: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+}
+
+.suggestions-list li {
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Media query per schermi piccoli */
+@media (max-width: 375px) {
+  .search-bar {
+    flex-direction: column; /* Posiziona gli elementi verticalmente per schermi molto piccoli */
+  }
+
+  .search-bar input {
+    flex: none; /* Disabilita il comportamento flessibile */
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    margin-bottom: 0.5em;
+  }
+
+  .search-button,
+  .reset-button {
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+    font-size: 0.8em; /* Riduce ulteriormente la dimensione del font sui piccoli schermi */
+    padding: 0.4em; /* Riduce il padding sui piccoli schermi */
+    margin: 0; /* Rimuove il margine per evitare spazi indesiderati */
+    white-space: nowrap; /* Assicura che i pulsanti non vadano su nuove righe */
+  }
+
+  .search-button {
+    margin-bottom: 0.5em;
+  }
+}
+
+
+/* styles/add-product-page.css */
+.add-product-form {
+  position: relative;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: Montserrat, sans-serif;
+  background-color: #efefef;
+}
+
+.add-product-form h2 {
+  margin-top: 0;
+}
+
+.add-product-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.add-product-form input,
+.add-product-form textarea {
+  font-family: Montserrat, sans-serif;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.add-product-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.add-product-form button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-product-form button:hover {
+  background-color: #218838;
+}
+
+.error-popup {
+  position: fixed;
+  bottom: 20px; /* Spazio dal fondo della pagina */
+  left: 50%;
+  transform: translateX(-50%); /* Centra orizzontalmente */
+  padding: 10px 20px;
+  color: white;
+  background-color: rgb(163, 0, 0);
+  border: 1px solid #f5c6cb;
+  border-radius: 7px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  max-width: 90%; /* Evita che il popup sia troppo largo su schermi piccoli */
+  text-align: center; /* Centra il testo all'interno del popup */
+  font-family: Montserrat, sans-serif;
+}
+
+.error-popup p {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .add-product-form {
+    padding: 15px;
+  }
+
+  .add-product-form label,
+  .add-product-form input,
+  .add-product-form textarea,
+  .add-product-form button {
+    font-size: 14px;
+  }
+
+  .add-product-form textarea {
+    height: 80px;
+  }
+
+  .error-popup {
+    font-size: 14px;
+  }
+}
+
+.success-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  max-width: 90%;
+  text-align: center;
+  z-index: 1000;
+  font-family: Montserrat, sans-serif;
+}
+
+.success-popup p {
+  margin: 0;
+}
+
+.indietro-button{
+  background-color: #aa0000 !important;
+}
+
+.fab-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fab {
+  background-color: #085394;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fab:hover {
+  background-color: #0056b3;
+}
+
+.fab-menu {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3px;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fab-menu.show {
+  display: flex;
+}
+
+.fab-menu-item {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1001;
+}
+
+.fab-menu-item:hover {
+  background-color: #218838;
+}
+
+
+.popup-eliminato {
+  color: #218838;
+  background-color: #d4edda;
+  padding: 3px;
+  margin: 10px 0;
+  border-radius: 7px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 20px); /* Riduci la larghezza per evitare overflow */
+  max-width: 600px; /* Limita la larghezza massima del popup */
+  box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
+  z-index: 3001;
+}
+
+.upload{
+  background-color: rgb(164 164 4) !important;
+}
+
+.fab-menu-item{
+  font-size: 22px !important;
+}
+.qr-code-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  border: 2px solid black;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 7px;
+}
+
+#reader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#reader video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
+}
+
+.cancel-button {
+  margin-top: 10px;
+  color: white;
+  font-family: Montserrat, sans-serif;
+  background-color: darkred;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+}
+
+.popup-eliminato2 {
+  color: white;
+  background-color: rgb(163, 0, 0);
+  padding: 3px;
+  margin: 10px 0;
+  border-radius: 7px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 20px); /* Riduci la larghezza per evitare overflow */
+  max-width: 600px; /* Limita la larghezza massima del popup */
+  box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
+  z-index: 3001;
+}
+
+.responsive-image {
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Centra l'immagine orizzontalmente */
+}

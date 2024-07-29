@@ -1,0 +1,82 @@
+<div class="data-table-container">
+  <div class="search-bar">
+    <input type="text" placeholder="Cerca per nome, codice o parole chiave..." {{on "input" this.updateSearchQuery}}
+      {{on "keydown" this.handleKeyDown}} value={{this.searchQuery}} />
+    <button class="search-button" type="button" {{on "click" this.executeSearch}}>Cerca</button>
+    {{#if this.showResetButton}}
+    <button class="reset-button" type="button" {{on "click" this.resetSearch}}>Reset</button>
+    {{/if}}
+    {{#if this.suggestions.length}}
+    <ul class="suggestions-list">
+      {{#each this.suggestions as |suggestion|}}
+      <li {{on "click" (fn this.selectSuggestion suggestion)}}>
+        {{suggestion.titolo}} ({{suggestion.codice}})
+      </li>
+      {{/each}}
+    </ul>
+    {{/if}}
+  </div>
+
+  {{#each this.filteredProducts as |product|}}
+  <div class="product-item">
+    <div class="product-summary">
+      <span class="product-title">{{product.codice}} <br> {{product.titolo}}</span>
+      <button class="expand-button" type="button" {{on "click" (fn this.toggleDescription product)}}>
+        {{#if (eq this.expandedProduct product)}}
+        - Dettagli
+        {{else}}
+        + Dettagli
+        {{/if}}
+      </button>
+      <button class="edit-button" type="button" {{on "click" (fn this.editProduct product)}}><span
+          class="mdi mdi-square-edit-outline"></span></button>
+      <button class="delete-button" type="button" {{on "click" (fn this.deleteProduct product)}}><span
+          class="mdi mdi-delete"></span></button>
+    </div>
+    {{#if (eq this.expandedProduct product)}}
+    <ProductDetails @product={{product}} />
+    {{/if}}
+  </div>
+  {{/each}}
+</div>
+
+<div class="fab-container">
+  <div class="fab" {{on "click" this.toggleFabMenu}}><span class="mdi mdi-menu"></span></div>
+  <div class="fab-menu {{if this.fabMenuVisible " show"}}">
+    <button class="fab-menu-item" type="button" {{on "click" this.downloadProducts}}><span
+        class="mdi mdi-download"></span></button>
+    <button class="fab-menu-item upload" type="button" {{on "click" this.clearLocalStorageAndLoadPage}}><span
+        class="mdi mdi-upload"></span></button>
+    <button class="fab-menu-item" type="button" {{on "click" this.scanQRCode}}><span
+        class="mdi mdi-qrcode-scan"></span></button>
+    <button class="fab-menu-item add-button" type="button" {{on "click" this.handleAdd}}><span
+        class="mdi mdi-plus"></span></button>
+  </div>
+</div>
+
+{{#if this.notification.showSuccessMessage}}
+<div class="success-popup">
+  <p>{{this.notification.successMessage}}</p>
+</div>
+{{/if}}
+
+{{#if this.deletedSuccessfully}}
+<div class="popup-eliminato">
+  <p>Articolo eliminato con successo</p>
+</div>
+{{/if}}
+
+
+{{#if this.isQRCodeScanning}}
+  <div class="qr-code-modal">
+    <div id="reader" class="qr-code-reader"></div>
+    <button class="cancel-button" {{on "click" this.cancelQRCodeScan}}>Annulla</button>
+  </div>
+{{/if}}
+
+{{#if this.showErrorPopup}}
+<div class="popup-eliminato2">
+  <p>QR Code non associato a nessun prodotto</p>
+</div>
+{{/if}}
+

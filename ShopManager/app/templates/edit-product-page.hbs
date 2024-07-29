@@ -1,0 +1,45 @@
+<div class="add-product-form">
+  <h2>Modifica Prodotto</h2>
+  
+  {{#if this.errorMessages.length}}
+    <div class="error-popup">
+      {{#each this.errorMessages as |error|}}
+        <p>{{error}}</p>
+      {{/each}}
+    </div>
+  {{/if}}
+
+  <form {{on "submit" this.handleSubmit}}>
+    <label for="codice">Codice</label>
+    <input id="codice" name="codice" type="text" value={{this.product.codice}} {{on "input" this.handleInput}} />
+
+    <label for="titolo">Titolo</label>
+    <input id="titolo" name="titolo" type="text" value={{this.product.titolo}} {{on "input" this.handleInput}} />
+
+    <label for="descrizione">Descrizione</label>
+    <textarea id="descrizione" name="descrizione" value={{this.product.descrizione}} {{on "input" this.handleInput}}></textarea>
+
+    <label for="prezzo">Prezzo</label>
+    <input id="prezzo" name="prezzo" type="number" step="0.01" value={{this.product.prezzo}} {{on "input" this.handleInput}} />
+
+    <label for="quantita">Quantità</label>
+    <input id="quantita" name="quantita" type="number" value={{this.product.quantita}} {{on "input" this.handleInput}} />
+
+    <label for="numeroPulsante">Numero Pulsante</label>
+    <input id="numeroPulsante" name="numeroPulsante" type="text" value={{this.product.numeroPulsante}} {{on "input" this.handleInput}} />
+
+    <label for="paroleChiave">Parole Chiave</label>
+    <input id="paroleChiave" name="paroleChiave" type="text" value={{this.product.paroleChiave}} {{on "input" this.handleInput}} />
+
+    <label for="sezione">Sezione</label>
+    <input id="sezione" name="sezione" type="text" value={{this.product.sezione}} {{on "input" this.handleInput}} />
+
+    <label for="scaffale">Scaffale</label>
+    <input id="scaffale" name="scaffale" type="text" value={{this.product.scaffale}} {{on "input" this.handleInput}} />
+
+    <div class="button-container">
+      <button type="button" {{on "click" this.handleBack}} class="indietro-button">Indietro</button>
+      <button type="submit">Invia</button>
+    </div>
+  </form>
+</div>
