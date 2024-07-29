@@ -58,11 +58,12 @@ export default class HomePageController extends Controller {
   executeSearch() {
     const query = this.searchQuery.toLowerCase();
     this.filteredProducts = query.trim() === '' ? this.productData.getProducts() : this.productData.getProducts().filter((product) => {
-      return (
-        product.titolo.toLowerCase().startsWith(query) ||
-        product.paroleChiave.toLowerCase().startsWith(query) ||
-        product.codice.toLowerCase().startsWith(query)
-      );
+      let paroleChiaveArray = product.paroleChiave.toLowerCase().split(',').map(parola => parola.trim());
+        return (
+          product.titolo.toLowerCase().startsWith(query) ||
+          paroleChiaveArray.some(parola => parola.startsWith(query)) ||
+          product.codice.toLowerCase().startsWith(query)
+        );
     });
     this.suggestionSelected=true;
     this.suggestions = [];
